@@ -1,3 +1,3 @@
 function newObj() {
-  let obj = new Object.create(null);
+  let obj = Object.create(null);
 }

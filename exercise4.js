@@ -34,7 +34,7 @@ StupidDevice.prototype.brightness = function(brightness) {
 
 const computer = new SmartDevice('computer', 80, 'off', 21)
 const laptop = new SmartDevice('laptop', 70, 'off', 15)
-const deskLamp = new StupidDevice('desk lamp',10, 'off')
+const deskLamp = new StupidDevice('desk lamp', 10, 'off')
 
 console.log(computer);
 console.log(laptop);
@@ -53,7 +53,7 @@ function powerSum(arr){
       value += item.powerConsumption
     }
   })
-  console.log(value);
+  console.log(`Общее энергопотребление ${value} ватт`);
 }
 
 powerSum([computer, laptop, deskLamp])

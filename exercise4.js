@@ -1,37 +1,59 @@
-function Device(name, powerConsumption){
+function Device(name, powerConsumption, turn){
   this.name = name;
   this.powerConsumption = powerConsumption;
+  this.turn = turn;
 }
-Device.prototype.switchingDevice = function(turn){
-  if (turn == 'on'){
-    return this.powerConsumption;
+Device.prototype.turnOnOff = function(){
+  if (this.turn === 'on') {
+    console.log(`Устройство ${this.name} включено`);
   } else {
-    return 0
+    console.log(`Устройство ${this.name} выключено`);
   }
 }
 
 SmartDevice.prototype = new Device();
 StupidDevice.prototype = new Device();
 
-function SmartDevice(name, diagonal){
+function SmartDevice(name, powerConsumption, turn, diagonal){
   this.name = name;
+  this.powerConsumption = powerConsumption;
   this.diagonal = diagonal;
+  this.turn = turn;
 }
 
-function StupidDevice(name){
+function StupidDevice(name, powerConsumption, turn){
   this.name = name;
+  this.powerConsumption = powerConsumption;
+  this.turn = turn;
 }
 StupidDevice.prototype.brightness = function(brightness) {
   console.log(`This device is ${brightness}`);
 }
 
-const computer = new SmartDevice('computer', 21)
-const laptop = new SmartDevice('laptop', 15)
-const deskLamp = new StupidDevice('desk lamp')
+const computer = new SmartDevice('computer', 80, 'on', 21)
+const laptop = new SmartDevice('laptop', 70, 'off', 15)
+const deskLamp = new StupidDevice('desk lamp',10, 'on')
 
 console.log(computer);
 console.log(laptop);
-computer.switchingDevice('on')
-laptop.switchingDevice('off')
-deskLamp.switchingDevice('on')
+console.log(deskLamp);
+
 deskLamp.brightness('very brightness')
+computer.turnOnOff()
+laptop.turnOnOff()
+deskLamp.turnOnOff()
+
+function powerSum(){
+  let value = 0;
+  if (computer.turn === 'on'){
+    value += computer.powerConsumption;
+  }
+  if (laptop.turn === 'on'){
+    value += laptop.powerConsumption;
+  }
+  if (deskLamp.turn === 'on'){
+    value += deskLamp.powerConsumption;
+  }
+  console.log(value);
+}
+powerSum()
